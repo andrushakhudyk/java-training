@@ -1,5 +1,11 @@
 package com.example.demo;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,12 +21,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Column(name = "name", nullable = false)
     private String name;
-
+    
+    @Email
+    @NotNull
+    @Size(min = 5, max = 50)
     @Column(name = "email", nullable = false)
     private String email;
 
+    @NotNull
+    @Min(1) @Max(150)
     @Column(name = "age", nullable = false)
     private int age;
 
