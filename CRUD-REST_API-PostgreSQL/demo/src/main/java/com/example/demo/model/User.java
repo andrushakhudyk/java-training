@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +10,7 @@ import java.util.List;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.CascadeType;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
@@ -39,7 +40,7 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Tasks> tasks = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
     public User(){        
     }
@@ -78,16 +79,16 @@ public class User {
         this.age = age;
     }
 
-    public List<Tasks> getTasks() {
+    public List<Task> getTasks() {
         return tasks;
     }
 
-    public void addTask(Tasks task) {
+    public void addTask(Task task) {
         task.setUser(this);
         this.tasks.add(task);
     }
 
-    public void removeTask(Tasks task) {
+    public void removeTask(Task task) {
         task.setUser(null);
         this.tasks.remove(task);
     }

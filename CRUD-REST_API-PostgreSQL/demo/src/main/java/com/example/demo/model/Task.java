@@ -1,23 +1,24 @@
-package com.example.demo;
+package com.example.demo.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-public class Tasks {
+public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String taskName;
 
-    private Date deadline;
+    private LocalDate deadline;
 
     private TaskStatus status;
 
@@ -26,10 +27,10 @@ public class Tasks {
     @JsonIgnoreProperties("tasks")
     private User user;
 
-    public Tasks() {
+    public Task() {
     }
 
-    public Tasks(String taskName, Date deadline, TaskStatus status) {
+    public Task(String taskName, LocalDate deadline, TaskStatus status) {
         this.taskName = taskName;
         this.deadline = deadline;
         this.status = status;
@@ -47,11 +48,11 @@ public class Tasks {
         this.taskName = taskName;
     }
 
-    public Date getDeadline() {
+    public LocalDate getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Date deadline) {
+    public void setDeadline(LocalDate deadline) {
         this.deadline = deadline;
     }
 
